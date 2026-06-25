@@ -1,0 +1,6 @@
+{
+  "name": "Luxury Living Hero Section",
+  "description": "A highly-polished futuristic real estate hero section with organic curves and fluid animations, replicating the designer's vision.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
