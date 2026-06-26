@@ -71,6 +71,20 @@ export default function App() {
     }
   }, [filterState]);
 
+  // Automatic slideshow effect for Browntree Ooty Resort (selectedProperty.id === 'lunar-oasis')
+  useEffect(() => {
+    if (selectedProperty.id === 'lunar-oasis') {
+      const interval = setInterval(() => {
+        setActiveRoomIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % selectedProperty.gallery.length;
+          setActiveBgImage(selectedProperty.gallery[nextIndex].url);
+          return nextIndex;
+        });
+      }, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [selectedProperty.id, selectedProperty.gallery]);
+
   // Open Chat, AboutUs, or Careers depending on selected tab
   useEffect(() => {
     if (activeTab === 'chat') {

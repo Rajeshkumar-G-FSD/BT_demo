@@ -3,7 +3,7 @@ import { Property } from './types';
 export const PROPERTIES: Property[] = [
   {
     id: 'lunar-oasis',
-    name: 'Lunar Oasis Villa',
+    name: 'Browntree Ooty Resort',
     location: 'OOTY',
     address: '1874 Forest Haven Rd, Asheville',
     price: 300000,
@@ -13,12 +13,12 @@ export const PROPERTIES: Property[] = [
     yard: 126,
     bedrooms: 3,
     baths: 2,
-    mainImage: '/src/assets/images/lunar_oasis_villa_1782405505849.jpg',
+    mainImage: '/src/assets/images/browntree_ooty_hotel.png',
     gallery: [
-      { name: 'Exterior Vista', url: '/src/assets/images/lunar_oasis_villa_1782405505849.jpg' },
-      { name: 'Living Lounge', url: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80' },
-      { name: 'Sunset Pool', url: 'https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80' },
-      { name: 'Master Retreat', url: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80' }
+      { name: 'Browntree Ooty Suite', url: '/src/assets/images/browntree_ooty_hotel.png' },
+      { name: 'Browntree Ooty Grounds', url: '/src/assets/images/browntree_ooty_hotels.png' },
+      { name: 'Browntree Kothagiri Crest', url: '/src/assets/images/browntree_kothagiri.png' },
+      { name: 'Browntree Kodaikanal Retreat', url: '/src/assets/images/browntree_kodaikanal.png' }
     ],
     description: 'This futuristic villa seamlessly blends into the desert environment, offering a modern, flowing space with panoramic desert views. Its innovative design makes it a perfect luxury getaway.',
     rating: 4.9
