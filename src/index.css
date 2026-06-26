@@ -13,6 +13,27 @@
   -webkit-backdrop-filter: blur(16px);
 }
 
+/* Organic Inverse Fillet Classes for hanging tabs */
+.hanging-tab-left-fillet {
+  position: absolute;
+  top: 0;
+  left: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 0% 100%, transparent 20px, var(--tab-bg, #ffffff) 20px);
+  pointer-events: none;
+}
+
+.hanging-tab-right-fillet {
+  position: absolute;
+  top: 0;
+  right: -20px;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 100% 100%, transparent 20px, var(--tab-bg, #ffffff) 20px);
+  pointer-events: none;
+}
+
 /* Custom scrollbars for lists & chat */
 ::-webkit-scrollbar {
   width: 6px;

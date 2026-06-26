@@ -25,6 +25,8 @@ export interface FilterState {
   location: string;
   propertyType: string;
   maxPrice: number;
+  checkIn?: string;
+  checkOut?: string;
   offerType: 'Buy' | 'Rent';
 }
 
