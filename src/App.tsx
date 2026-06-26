@@ -13,7 +13,10 @@ import {
   Info,
   Layers,
   Compass,
-  ArrowRight
+  ArrowRight,
+  Briefcase,
+  Users,
+  Award
 } from 'lucide-react';
 import { PROPERTIES } from './data';
 import { FilterState, Property } from './types';
@@ -46,6 +49,8 @@ export default function App() {
   const [likeCount, setLikeCount] = useState(4420);
   const [bookmarkCount, setBookmarkCount] = useState(157);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
+  const [showCareersModal, setShowCareersModal] = useState(false);
   const [showPropertyGrid, setShowPropertyGrid] = useState(false);
   const [tourMode, setTourMode] = useState(false);
   const [notificationCount, setNotificationCount] = useState(2);
@@ -66,11 +71,17 @@ export default function App() {
     }
   }, [filterState]);
 
-  // Open Chat when 'chat' tab is selected
+  // Open Chat, AboutUs, or Careers depending on selected tab
   useEffect(() => {
     if (activeTab === 'chat') {
       setIsChatOpen(true);
       setActiveTab('home'); // revert sidebar active button to home, keep chat open
+    } else if (activeTab === 'about') {
+      setShowAboutModal(true);
+      setActiveTab('home'); // revert sidebar active button to home
+    } else if (activeTab === 'careers') {
+      setShowCareersModal(true);
+      setActiveTab('home'); // revert sidebar active button to home
     }
   }, [activeTab]);
 
@@ -138,6 +149,7 @@ export default function App() {
             setActiveTab={(tab) => {
               if (tab === 'grid') {
                 setShowPropertyGrid(true);
+                setActiveTab('grid');
               } else if (tab === 'home') {
                 setShowPropertyGrid(false);
                 setTourMode(false);
@@ -619,6 +631,144 @@ export default function App() {
                     >
                       Close
                     </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ABOUT US MODAL */}
+          <AnimatePresence>
+            {showAboutModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-neutral-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 pl-28"
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className={`max-w-lg w-full p-8 rounded-[2.5rem] border shadow-2xl relative ${
+                    isDarkMode ? 'bg-neutral-900 border-neutral-800 text-white' : 'bg-white border-stone-100 text-neutral-800'
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5 mb-5">
+                    <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <Users className="w-5 h-5 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-bold tracking-tight">About Browntree</h3>
+                      <p className="text-neutral-400 text-[10px] uppercase tracking-wider font-semibold">Our Heritage & Design Philosophy</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 text-xs font-light leading-relaxed text-neutral-600 dark:text-neutral-300">
+                    <p>
+                      Founded inside the sapphire peaks of the Nilgiris, <span className="font-semibold text-primary">Browntree Premium Estates</span> represents the pinnacle of luxury, sustainable high-design mountain retreats.
+                    </p>
+                    <p>
+                      From the mist-crowned valleys of <span className="font-semibold text-neutral-950 dark:text-white">Ooty</span> and <span className="font-semibold text-neutral-950 dark:text-white">Coonoor</span> to the soaring stone heights of <span className="font-semibold text-neutral-950 dark:text-white">Kodaikanal</span> and <span className="font-semibold text-neutral-950 dark:text-white">Kothagiri</span>, we sculpt high-end spaces that exist in flawless synergy with their surrounding wild canvases.
+                    </p>
+                    <p>
+                      Our signature constructs integrate organic native rock, thermal curved floating glass facades, and certified sustainably sourced timbers. We bypass standard architectural conventions to build structures that flow organically with the earth's contours, gifting our patrons with an unparalleled, deep connection to Nilgiri's serene grandeur.
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-5 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Award className="w-4 h-4 text-primary" />
+                      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">Aesthetic Standard of Excellence</span>
+                    </div>
+                    <button
+                      onClick={() => setShowAboutModal(false)}
+                      className="px-5 py-2 rounded-xl bg-primary text-white text-xs font-semibold cursor-pointer transition-all duration-300 hover:opacity-90 shadow-md"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* CAREERS MODAL */}
+          <AnimatePresence>
+            {showCareersModal && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 bg-neutral-950/80 backdrop-blur-md z-50 flex items-center justify-center p-4 pl-28"
+              >
+                <motion.div
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.95, opacity: 0 }}
+                  className={`max-w-lg w-full p-8 rounded-[2.5rem] border shadow-2xl relative ${
+                    isDarkMode ? 'bg-neutral-900 border-neutral-800 text-white' : 'bg-white border-stone-100 text-neutral-800'
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5 mb-5">
+                    <div className="w-11 h-11 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <Briefcase className="w-5 h-5 stroke-[2.2]" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-bold tracking-tight">Join the Collective</h3>
+                      <p className="text-neutral-400 text-[10px] uppercase tracking-wider font-semibold">Sculpting Exceptional Mountain Spaces</p>
+                    </div>
+                  </div>
+
+                  <p className="text-xs font-light text-neutral-600 dark:text-neutral-300 mb-4 leading-relaxed">
+                    We are always looking for visionary architects, sustainable materials experts, master craftsman builders, and premium experience hosts who share our profound devotion to high-fidelity organic structures.
+                  </p>
+
+                  <div className="space-y-3.5">
+                    <div className="p-3.5 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/20">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-semibold text-neutral-900 dark:text-white">Lead Architectural Scout</h4>
+                        <span className="text-[9px] font-mono font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full uppercase">Ooty & Coonoor</span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 mt-1">Lead mountain plot discovery, climate impact analysis, and organic integration.</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/20">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-semibold text-neutral-900 dark:text-white">Immersive Frontend UX Architect</h4>
+                        <span className="text-[9px] font-mono font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full uppercase">Hybrid / Remote</span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 mt-1">Design and build pristine, highly responsive visual layouts and digital portals for collectors.</p>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl border border-neutral-100 dark:border-neutral-800 bg-neutral-50/50 dark:bg-neutral-950/20">
+                      <div className="flex items-center justify-between">
+                        <h4 className="text-xs font-semibold text-neutral-900 dark:text-white">Sustainable Materials Engineer</h4>
+                        <span className="text-[9px] font-mono font-bold text-primary bg-primary/15 px-2 py-0.5 rounded-full uppercase">Kodaikanal</span>
+                      </div>
+                      <p className="text-[10px] text-neutral-400 mt-1">Pioneer structural timber fusion and high-altitude thermal glass setups.</p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 pt-5 border-t border-neutral-100 dark:border-neutral-800 flex items-center justify-between">
+                    <span className="text-[10px] font-medium text-neutral-400">careers@browntreeestates.com</span>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setShowCareersModal(false)}
+                        className="px-4 py-2 rounded-xl border border-neutral-200 dark:border-neutral-800 text-xs font-semibold hover:bg-neutral-50 dark:hover:bg-neutral-800 cursor-pointer transition-all duration-300"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => {
+                          alert('Thank you for your interest! Please send your portfolio and resume to careers@browntreeestates.com');
+                          setShowCareersModal(false);
+                        }}
+                        className="px-5 py-2 rounded-xl bg-primary text-white text-xs font-semibold cursor-pointer transition-all duration-300 hover:opacity-90 shadow-md"
+                      >
+                        Apply Now
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               </motion.div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Search, Grid, MessageSquare, Bell, Settings, Moon, Sun } from 'lucide-react';
+import { Home, Info, Image, Briefcase, Bell, Facebook, Instagram, Youtube } from 'lucide-react';
 import { motion } from 'motion/react';
 
 interface SidebarProps {
@@ -36,46 +36,49 @@ export default function Sidebar({
           <Home className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
         </button>
 
-        {/* Search Button */}
+        {/* About Us Button */}
         <button
-          onClick={() => setActiveTab('search')}
+          onClick={() => setActiveTab('about')}
           className={`w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
-            activeTab === 'search'
-              ? 'bg-white text-primary'
+            activeTab === 'about'
+              ? 'bg-white text-primary font-bold scale-105'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
-          aria-label="Search"
-          id="sidebar-btn-search"
+          aria-label="About Us"
+          title="About Us"
+          id="sidebar-btn-about"
         >
-          <Search className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
+          <Info className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
         </button>
 
-        {/* Grid/Gallery Button */}
+        {/* Gallery Button */}
         <button
           onClick={() => setActiveTab('grid')}
           className={`w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
-            activeTab === 'grid'
-              ? 'bg-white text-primary'
+            activeTab === 'grid' || activeTab === 'gallery'
+              ? 'bg-white text-primary font-bold scale-105'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
           aria-label="Gallery"
+          title="Gallery"
           id="sidebar-btn-grid"
         >
-          <Grid className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
+          <Image className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
         </button>
 
-        {/* Chat Button */}
+        {/* Careers Button */}
         <button
-          onClick={() => setActiveTab('chat')}
+          onClick={() => setActiveTab('careers')}
           className={`w-10 h-10 md:w-11 md:h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
-            activeTab === 'chat'
-              ? 'bg-white text-primary'
+            activeTab === 'careers'
+              ? 'bg-white text-primary font-bold scale-105'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
-          aria-label="Aura Chat"
-          id="sidebar-btn-chat"
+          aria-label="Careers"
+          title="Careers"
+          id="sidebar-btn-careers"
         >
-          <MessageSquare className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
+          <Briefcase className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2.2]" />
         </button>
       </div>
 
@@ -118,55 +121,48 @@ export default function Sidebar({
         </div>
       </div>
 
-      {/* BOTTOM SECTION: SETTINGS & THEME TOGGLES */}
+      {/* BOTTOM SECTION: SOCIAL LINKS (FACEBOOK, INSTAGRAM, YOUTUBE) */}
       <div className="flex flex-row md:flex-col items-center">
-        <div className={`flex flex-row md:flex-col items-center gap-2.5 md:gap-4 p-1 md:p-0 md:w-14 md:pt-4 md:pb-5 rounded-full md:rounded-l-none md:rounded-r-[2rem] shadow-md md:shadow-lg border border-white/10 md:border-y md:border-r transition-colors duration-500 ${
+        <div className={`flex flex-row md:flex-col items-center gap-3 md:gap-4 p-2 md:p-0 md:w-14 md:py-4.5 rounded-full md:rounded-l-none md:rounded-r-[2rem] shadow-md md:shadow-lg border border-white/10 md:border-y md:border-r transition-colors duration-500 ${
           isDarkMode 
             ? 'bg-neutral-950/65 md:bg-neutral-900 border-neutral-800/80 text-white' 
             : 'bg-white/85 md:bg-white border-stone-200/60 text-neutral-800'
         }`}>
-          {/* Settings button */}
-          <button
-            onClick={() => setActiveTab('settings')}
-            className={`w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${
-              activeTab === 'settings'
-                ? 'text-primary'
-                : 'text-neutral-400 hover:text-neutral-800 dark:hover:text-white'
-            }`}
-            aria-label="Settings"
-            id="sidebar-btn-settings"
+          {/* Facebook Link */}
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+            aria-label="Facebook"
+            id="sidebar-social-facebook"
           >
-            <Settings className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2]" />
-          </button>
+            <Facebook className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2]" />
+          </a>
 
-          {/* Theme Toggles (Moon and Sun) */}
-          <div className="flex flex-row md:flex-col gap-1.5 md:gap-2.5 items-center">
-            {/* Moon Icon */}
-            <button
-              onClick={() => setIsDarkMode(true)}
-              className={`w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                isDarkMode 
-                  ? 'bg-neutral-805 text-primary shadow-sm scale-110 border border-neutral-700/30' 
-                  : 'text-neutral-400 hover:text-neutral-600'
-              }`}
-              aria-label="Dark Mode"
-            >
-              <Moon className="w-3 h-3 md:w-3.5 md:h-3.5 stroke-[2]" />
-            </button>
+          {/* Instagram Link */}
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+            aria-label="Instagram"
+            id="sidebar-social-instagram"
+          >
+            <Instagram className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2]" />
+          </a>
 
-            {/* Sun Icon */}
-            <button
-              onClick={() => setIsDarkMode(false)}
-              className={`w-6 h-6 md:w-7 md:h-7 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
-                !isDarkMode 
-                  ? 'bg-stone-100 text-primary shadow-sm scale-110 border border-stone-200/50' 
-                  : 'text-neutral-500 hover:text-white'
-              }`}
-              aria-label="Light Mode"
-            >
-              <Sun className="w-3 h-3 md:w-3.5 md:h-3.5 stroke-[2]" />
-            </button>
-          </div>
+          {/* YouTube Link */}
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-7 h-7 md:w-9 md:h-9 rounded-full flex items-center justify-center text-neutral-400 hover:text-primary transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer"
+            aria-label="YouTube"
+            id="sidebar-social-youtube"
+          >
+            <Youtube className="w-4 h-4 md:w-4.5 md:h-4.5 stroke-[2]" />
+          </a>
         </div>
       </div>
 

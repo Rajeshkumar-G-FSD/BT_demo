@@ -3,6 +3,7 @@ import { ChevronDown, MapPin, Home, Calendar, ArrowUpRight, Check } from 'lucide
 import { motion, AnimatePresence } from 'motion/react';
 import { FilterState } from '../types';
 import logoImg from '../assets/images/BrownTree_logo.png';
+import adminLogoImg from '../assets/images/Browntree_Admin_logo.png';
 
 interface FilterBarProps {
   filterState: FilterState;
@@ -175,11 +176,10 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
       
       {/* 1. LOGO & MOBILE RE-TREATS (Floating left side on desktop, full row on mobile) */}
       <div className="flex items-center justify-between w-full lg:w-auto gap-4">
-        <button
-          onClick={() => selectOption('offerType', 'Buy')}
-          className="group flex items-center justify-center p-0 cursor-pointer focus:outline-none border-none bg-transparent"
-          title="BT Premium Estates - Buy Mode"
-          id="logo-buy-toggle"
+        <div
+          className="group flex items-center justify-center p-0 select-none border-none bg-transparent"
+          title="BT Premium Estates"
+          id="logo-display"
         >
           <img 
             src={logoImg} 
@@ -187,35 +187,13 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
             className="h-14 lg:h-18 w-auto object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
             referrerPolicy="no-referrer"
           />
-        </button>
-
-        {/* Mobile-only Buy/Rent segment indicator */}
-        <div className="flex lg:hidden items-center gap-1 p-1 rounded-full bg-neutral-900/60 border border-white/5 backdrop-blur-md">
-          <button
-            onClick={() => selectOption('offerType', 'Buy')}
-            className={`px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-wider font-extrabold transition-all duration-300 ${
-              filterState.offerType === 'Buy'
-                ? 'bg-primary text-white shadow-md'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            Buy
-          </button>
-          <button
-            onClick={() => selectOption('offerType', 'Rent')}
-            className={`px-3.5 py-1.5 rounded-full text-[10px] uppercase tracking-wider font-extrabold transition-all duration-300 ${
-              filterState.offerType === 'Rent'
-                ? 'bg-primary text-white shadow-md'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            Rent
-          </button>
         </div>
+
+
       </div>
 
       {/* 2. CENTRAL FLUID HANGING POD (780px wide on desktop, elegant responsive glassmorphic stack on mobile) */}
-      <div className="relative w-full lg:w-[780px] h-auto lg:h-full flex items-center justify-center shrink-0 lg:shrink">
+      <div className="relative lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:top-0 w-full lg:w-[780px] h-auto lg:h-full flex items-center justify-center shrink-0 lg:shrink">
         
         {/* Organic Curved Background SVG - only on desktop */}
         <svg
@@ -457,25 +435,7 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
 
       </div>
 
-      {/* 3. RENT BUTTON (Floating right side - only visible on desktop) */}
-      <div className="hidden lg:flex items-center">
-        <button
-          onClick={() => selectOption('offerType', 'Rent')}
-          className={`group flex items-center gap-3.5 px-8 py-3.5 rounded-full transition-all duration-300 shadow-md cursor-pointer ${
-            filterState.offerType === 'Rent'
-              ? isDarkMode
-                ? 'bg-neutral-800 text-primary border border-neutral-700/50 font-bold'
-                : 'bg-white text-primary border border-stone-200/50 font-extrabold'
-              : isDarkMode
-                ? 'bg-neutral-900/60 text-neutral-400 border border-neutral-800 hover:text-white'
-                : 'bg-white/80 text-neutral-600 border border-white hover:text-primary hover:bg-white backdrop-blur-sm'
-          }`}
-          id="toggle-rent-btn"
-        >
-          <span className="text-xs uppercase tracking-wider font-bold">Rent</span>
-          <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </button>
-      </div>
+
 
     </div>
   );
