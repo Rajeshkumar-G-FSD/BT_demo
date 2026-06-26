@@ -26,8 +26,8 @@ export default function App() {
   const [activeTab, setActiveTab] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [filterState, setFilterState] = useState<FilterState>({
-    location: 'Arizona',
-    propertyType: 'Villa',
+    location: 'OOTY',
+    propertyType: 'Hotel',
     maxPrice: 500000,
     checkIn: 'Jun 28',
     checkOut: 'Jul 05',
@@ -131,8 +131,8 @@ export default function App() {
       {/* DASHBOARD OUTER SHELL FRAME (Fullscreen Layout) */}
       <div className="relative w-full h-full overflow-hidden z-10 flex flex-col">
         
-        {/* SIDEBAR COMPONENT (Left Side - Floats over the Inner Viewport) */}
-        <div className="absolute left-4 top-4 bottom-4 w-20 z-20">
+        {/* SIDEBAR COMPONENT (Left Side on Desktop, Floating Bottom Bar on Mobile) */}
+        <div className="fixed bottom-4 left-4 right-4 md:absolute md:left-4 md:top-4 md:bottom-4 md:w-20 md:right-auto md:h-auto h-16 z-30">
           <Sidebar 
             activeTab={activeTab} 
             setActiveTab={(tab) => {
@@ -174,10 +174,10 @@ export default function App() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-black/45 z-10 pointer-events-none" />
           </div>
 
-          {/* MAIN INNER SCROLLABLE/INTERACTIVE LAYER (offset to the right to leave space for Sidebar) */}
-          <div className="absolute inset-0 z-10 flex flex-col justify-between pl-24 pt-0">
+          {/* MAIN INNER SCROLLABLE/INTERACTIVE LAYER (offset to the right on desktop to leave space for Sidebar, with bottom padding on mobile) */}
+          <div className="absolute inset-0 z-10 flex flex-col justify-between pl-0 md:pl-24 pb-24 md:pb-0 pt-0 overflow-y-auto md:overflow-hidden">
             
-            {/* TOP BAR / FILTER BAR (Flush with the top of inner viewport) */}
+            {/* TOP BAR / FILTER BAR (Flush with the top of inner viewport, responsive padding) */}
             <div className="w-full z-20">
               <FilterBar 
                 filterState={filterState} 

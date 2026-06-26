@@ -31,9 +31,9 @@ export default function AuraChat({
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const quickPrompts = [
-    "Show me California properties",
-    "Discover a clifftop penthouse in Utah",
-    "Villas under $500,000",
+    "Show me COONOOR properties",
+    "Discover a heritage stay in KOTHAKIRI",
+    "Hotels under $500,000",
     "Tell me about Lunar Oasis Villa"
   ];
 
@@ -49,27 +49,30 @@ export default function AuraChat({
     let reply = "";
     let action: any = null;
 
-    if (text.includes('california')) {
-      action = { type: 'FILTER_CHANGE', payload: { location: 'California' } };
-      reply = "Certainly. I have updated your search location to California. Let's look at the spectacular coastal properties available, such as the Solaria Dome Haven in Malibu.";
-    } else if (text.includes('utah')) {
-      action = { type: 'FILTER_CHANGE', payload: { location: 'Utah', propertyType: 'Penthouse' } };
-      reply = "Right away. Adjusting your portal to Utah. Behold the Nebula Glass Penthouse in Zion Valley, suspended dramatically over red rock clifftops.";
-    } else if (text.includes('arizona')) {
-      action = { type: 'FILTER_CHANGE', payload: { location: 'Arizona' } };
-      reply = "Splendid choice. Displaying Arizona estates. The iconic Lunar Oasis Villa is our signature luxury desert architectural masterpiece.";
-    } else if (text.includes('colorado')) {
-      action = { type: 'FILTER_CHANGE', payload: { location: 'Colorado' } };
-      reply = "Updating your settings to Colorado. The natural warmth of the Canyon Echo Residence in Aspen is highly recommended for design enthusiasts.";
-    } else if (text.includes('villa') || text.includes('villas')) {
-      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Villa' } };
-      reply = "Filtered to show only ultra-luxury Villas. Notice the organic curved forms and open panoramic floor plans.";
-    } else if (text.includes('penthouse')) {
-      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Penthouse' } };
-      reply = "Refined search for executive Penthouses. Excellent taste. These properties offer unmatched heights and luxury amenities.";
-    } else if (text.includes('dome') || text.includes('geodesic')) {
-      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Dome' } };
-      reply = "Searching for sustainable high-design geodesic Dome homes. These organic spaces represent the absolute cutting edge of structural layout.";
+    if (text.includes('coonoor')) {
+      action = { type: 'FILTER_CHANGE', payload: { location: 'COONOOR' } };
+      reply = "Certainly. I have updated your search location to COONOOR. Let's look at the spectacular mountain properties available, such as the Solaria Dome Haven.";
+    } else if (text.includes('kothakiri')) {
+      action = { type: 'FILTER_CHANGE', payload: { location: 'KOTHAKIRI', propertyType: 'Heritage Stays' } };
+      reply = "Right away. Adjusting your portal to KOTHAKIRI. Behold the Nebula Glass Penthouse, a modern architectural heritage stay suspended dramatically over hilltops.";
+    } else if (text.includes('ooty')) {
+      action = { type: 'FILTER_CHANGE', payload: { location: 'OOTY' } };
+      reply = "Splendid choice. Displaying OOTY estates. The iconic Lunar Oasis Villa is our signature luxury hotel architectural masterpiece.";
+    } else if (text.includes('kodaikanal')) {
+      action = { type: 'FILTER_CHANGE', payload: { location: 'KODAIKANAL' } };
+      reply = "Updating your settings to KODAIKANAL. The natural warmth of the Canyon Echo Residence is highly recommended for design enthusiasts.";
+    } else if (text.includes('hotel')) {
+      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Hotel' } };
+      reply = "Filtered to show only premium luxury Hotels. Notice the organic curved forms and open panoramic floor plans.";
+    } else if (text.includes('heritage')) {
+      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Heritage Stays' } };
+      reply = "Refined search for executive Heritage Stays. Excellent taste. These properties offer historic architectural forms and luxury amenities.";
+    } else if (text.includes('homestays') || text.includes('homestay')) {
+      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'HomeStays' } };
+      reply = "Searching for sustainable high-design HomeStays. These organic spaces represent the absolute cutting edge of comfort and local immersion.";
+    } else if (text.includes('service') || text.includes('apartment')) {
+      action = { type: 'FILTER_CHANGE', payload: { propertyType: 'Service Apartments' } };
+      reply = "Searching for boutique Service Apartments. Fully equipped residences for comfortable long-term stays.";
     } else if (text.includes('under 500') || text.includes('500,000') || text.includes('500k')) {
       action = { type: 'FILTER_CHANGE', payload: { maxPrice: 500000 } };
       reply = "Setting maximum price filter to $500,000. Displaying our select collection of architectural gems in this price range.";
@@ -83,9 +86,9 @@ export default function AuraChat({
       action = { type: 'FILTER_CHANGE', payload: { offerType: 'Rent' } };
       reply = "Switching portal to luxury monthly Rent options. Ideal for testing seasonal retreats.";
     } else if (text.includes('lunar') || text.includes('oasis')) {
-      reply = "The Lunar Oasis Villa is a masterpiece located in Arizona. It spans 695m² of flowing curved glass structure, featuring 3 premium bedroom suites and 2 luxurious baths, complete with an outdoor infinity oasis.";
+      reply = "The Lunar Oasis Villa is a masterpiece located in OOTY. It spans 695m² of flowing curved glass structure, featuring 3 premium bedroom suites and 2 luxurious baths, complete with an outdoor infinity oasis.";
     } else {
-      reply = "That is an intriguing inquiry. Our collection of premium architectural residences is curated specifically for visionary buyers. Would you like me to adjust the filters to show specific locations like California, Arizona, Colorado, or Utah?";
+      reply = "That is an intriguing inquiry. Our collection of premium architectural residences is curated specifically for visionary buyers. Would you like me to adjust the filters to show specific locations like COONOOR, OOTY, KOTHAKIRI, or KODAIKANAL?";
     }
 
     return { text: reply, action };
