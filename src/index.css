@@ -1,10 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
+:root {
+  --primary: #C34F04;
+  --secondary: #D1824F;
+  --accent: #D8B298;
+
+  --background: #FAF8F4;
+  --section: #F0E1D6;
+
+  --text: #040404;
+  --text-light: #666666;
+
+  --navy: #29395B;
+
+  --white: #FFFFFF;
+
+  --footer: #1E1E1E;
+}
+
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-brand-bg: var(--background);
+  --color-brand-section: var(--section);
+  --color-brand-text: var(--text);
+  --color-brand-text-light: var(--text-light);
+  --color-navy: var(--navy);
+  --color-footer: var(--footer);
 }
 
 /* Custom background animations & glassmorphism enhancements */

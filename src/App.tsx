@@ -125,7 +125,7 @@ export default function App() {
       </svg>
 
       {/* BACKGROUND DECORATIVE GLOWS */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-400/5 dark:bg-amber-400/2 rounded-full filter blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 dark:bg-primary/2 rounded-full filter blur-[120px] pointer-events-none z-0" />
       <div className="absolute bottom-10 right-1/4 w-[600px] h-[600px] bg-blue-400/5 dark:bg-blue-400/2 rounded-full filter blur-[120px] pointer-events-none z-0" />
 
       {/* DASHBOARD OUTER SHELL FRAME (Fullscreen Layout) */}
@@ -203,8 +203,8 @@ export default function App() {
                       id={`hotspot-${h.id}`}
                     >
                       <span className="relative flex h-6 w-6">
-                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isSelected ? 'bg-amber-400' : 'bg-white'}`}></span>
-                        <span className={`relative inline-flex rounded-full h-6 w-6 items-center justify-center border-2 border-white shadow-md ${isSelected ? 'bg-amber-400 text-neutral-900' : 'bg-black/40 text-white'}`}>
+                        <span className={`animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 ${isSelected ? 'bg-primary' : 'bg-white'}`}></span>
+                        <span className={`relative inline-flex rounded-full h-6 w-6 items-center justify-center border-2 border-white shadow-md ${isSelected ? 'bg-primary text-white' : 'bg-black/40 text-white'}`}>
                           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                         </span>
                       </span>
@@ -260,7 +260,7 @@ export default function App() {
                 } -ml-6 -mb-6 pb-8 pl-8`}
               >
                 <div>
-                  <h2 className="text-xs font-semibold tracking-tight uppercase font-display text-amber-500 flex items-center gap-1.5">
+                  <h2 className="text-xs font-semibold tracking-tight uppercase font-display text-primary flex items-center gap-1.5">
                     <Compass className="w-4 h-4" /> Find The Perfect Place
                   </h2>
                   <p className={`mt-2 text-[10px] leading-relaxed font-normal ${isDarkMode ? 'text-neutral-400' : 'text-neutral-500'}`}>
@@ -293,7 +293,7 @@ export default function App() {
                     
                     {/* Plus Icon trigger */}
                     <button 
-                      className="w-8 h-8 rounded-full bg-neutral-900 dark:bg-amber-400 text-white dark:text-neutral-900 flex items-center justify-center text-xs font-semibold shadow-md border-2 border-white dark:border-neutral-900 cursor-pointer"
+                      className="w-8 h-8 rounded-full bg-neutral-900 dark:bg-primary text-white dark:text-white flex items-center justify-center text-xs font-semibold shadow-md border-2 border-white dark:border-neutral-900 cursor-pointer"
                       id="expand-grid-btn"
                     >
                       <ArrowUpRight className="w-3.5 h-3.5" />
@@ -325,7 +325,7 @@ export default function App() {
                       {selectedProperty.name}
                     </h3>
                     <div className="flex items-center gap-1 mt-1 text-[10px] text-neutral-300">
-                      <MapPin className="w-3 h-3 text-amber-300 shrink-0" />
+                      <MapPin className="w-3 h-3 text-accent shrink-0" />
                       <span className="line-clamp-1">{selectedProperty.address}</span>
                     </div>
                   </div>
@@ -349,21 +349,21 @@ export default function App() {
                 {/* Spec indicators with premium styling */}
                 <div className="mt-4 pt-3 border-t border-white/15 grid grid-cols-2 gap-x-4 gap-y-1 text-[10px]">
                   <div className="flex items-center gap-2 text-neutral-200">
-                    <span className="w-1 h-1 rounded-full bg-amber-400" />
+                    <span className="w-1 h-1 rounded-full bg-primary" />
                     <span className="font-mono font-medium">{selectedProperty.size}m²</span>
                     <span className="text-neutral-400 text-[9px]">Interior</span>
                   </div>
                   <div className="flex items-center gap-2 text-neutral-200">
-                    <span className="w-1 h-1 rounded-full bg-amber-400" />
+                    <span className="w-1 h-1 rounded-full bg-primary" />
                     <span className="font-mono font-medium">{selectedProperty.yard}m²</span>
                     <span className="text-neutral-400 text-[9px]">Yard</span>
                   </div>
                   <div className="flex items-center gap-2 text-neutral-200">
-                    <span className="w-1 h-1 rounded-full bg-amber-400" />
+                    <span className="w-1 h-1 rounded-full bg-primary" />
                     <span className="font-medium">{selectedProperty.bedrooms} Beds</span>
                   </div>
                   <div className="flex items-center gap-2 text-neutral-200">
-                    <span className="w-1 h-1 rounded-full bg-amber-400" />
+                    <span className="w-1 h-1 rounded-full bg-primary" />
                     <span className="font-medium">{selectedProperty.baths} Baths</span>
                   </div>
                 </div>
@@ -404,7 +404,7 @@ export default function App() {
                       onClick={handleBookmark}
                       className={`p-1.5 rounded-lg border transition-all duration-300 cursor-pointer ${
                         isBookmarked 
-                          ? 'bg-amber-400 border-amber-400 text-neutral-900 scale-105' 
+                          ? 'bg-primary border-primary text-white scale-105' 
                           : 'border-white/20 hover:border-white/40 hover:bg-white/5 text-neutral-200'
                       }`}
                       id="bookmark-property-btn"
@@ -441,7 +441,7 @@ export default function App() {
               >
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="font-display font-semibold text-sm tracking-wide text-amber-400 uppercase flex items-center gap-1.5">
+                    <h4 className="font-display font-semibold text-sm tracking-wide text-primary uppercase flex items-center gap-1.5">
                       <Layers className="w-4 h-4 animate-spin-slow" /> Immersive Virtual Tour
                     </h4>
                     <p className="text-neutral-400 text-[10px] mt-0.5">Explore the customized architectural living spaces of {selectedProperty.name}.</p>
@@ -464,7 +464,7 @@ export default function App() {
                         setActiveBgImage(g.url);
                       }}
                       className={`relative flex-none w-32 h-16 rounded-xl overflow-hidden border-2 cursor-pointer transition-all duration-300 hover:scale-105 ${
-                        activeRoomIndex === idx ? 'border-amber-400 scale-102 shadow-lg' : 'border-white/10 opacity-70 hover:opacity-100'
+                        activeRoomIndex === idx ? 'border-primary scale-102 shadow-lg' : 'border-white/10 opacity-70 hover:opacity-100'
                       }`}
                       id={`tour-room-btn-${idx}`}
                     >
@@ -492,7 +492,7 @@ export default function App() {
                 <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                   <div>
                     <h3 className="font-display text-2xl font-semibold tracking-tight text-white flex items-center gap-2">
-                      <GridIcon className="w-5 h-5 text-amber-400" /> Curated Property Portfolio
+                      <GridIcon className="w-5 h-5 text-primary" /> Curated Property Portfolio
                     </h3>
                     <p className="text-neutral-400 text-xs mt-1">Explore our masterpiece architectural estates for sale and lease.</p>
                   </div>
@@ -516,7 +516,7 @@ export default function App() {
                         onClick={() => selectProperty(p)}
                         className={`group cursor-pointer rounded-2xl overflow-hidden border transition-all duration-500 relative flex flex-col h-64 ${
                           isCurrent 
-                            ? 'border-amber-400 bg-neutral-900/50 shadow-[0_0_20px_rgba(251,191,36,0.25)]' 
+                            ? 'border-primary bg-neutral-900/50 shadow-[0_0_20px_rgba(195,79,4,0.25)]' 
                             : 'border-white/10 bg-neutral-900/20 hover:border-white/30 hover:bg-neutral-900/40'
                         }`}
                         id={`portfolio-item-${p.id}`}
@@ -529,11 +529,11 @@ export default function App() {
                             className="w-full h-full object-cover group-hover:scale-105 transition-all duration-500"
                             referrerPolicy="no-referrer"
                           />
-                          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-neutral-950/70 text-[9px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-sm border border-white/10">
+                          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-neutral-950/70 text-[9px] font-semibold tracking-wider uppercase text-primary backdrop-blur-sm border border-white/10">
                             {p.type}
                           </div>
                           {isCurrent && (
-                            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-amber-400 text-neutral-900 text-[9px] font-bold tracking-wider uppercase flex items-center gap-1">
+                            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-primary text-white text-[9px] font-bold tracking-wider uppercase flex items-center gap-1">
                               <Check className="w-3 h-3 stroke-[3]" /> Selected
                             </div>
                           )}
@@ -542,11 +542,11 @@ export default function App() {
                         {/* Property Details */}
                         <div className="p-4 flex-1 flex flex-col justify-between">
                           <div>
-                            <h4 className="font-display font-semibold text-sm text-white group-hover:text-amber-400 transition-colors duration-300">
+                            <h4 className="font-display font-semibold text-sm text-white group-hover:text-primary transition-colors duration-300">
                               {p.name}
                             </h4>
                             <div className="flex items-center gap-1 mt-1 text-[10px] text-neutral-400">
-                              <MapPin className="w-3 h-3 text-amber-500 shrink-0" />
+                              <MapPin className="w-3 h-3 text-primary shrink-0" />
                               <span>{p.address}</span>
                             </div>
                           </div>
@@ -603,7 +603,7 @@ export default function App() {
                   <div className="mt-5 space-y-2.5">
                     <button
                       onClick={() => setShowShareModal(false)}
-                      className="w-full py-2.5 rounded-xl bg-neutral-950 dark:bg-amber-400 text-white dark:text-neutral-900 text-xs font-semibold cursor-pointer transition-all duration-300 hover:opacity-90"
+                      className="w-full py-2.5 rounded-xl bg-neutral-950 dark:bg-primary text-white dark:text-white text-xs font-semibold cursor-pointer transition-all duration-300 hover:opacity-90"
                     >
                       Copy Exclusive Link
                     </button>

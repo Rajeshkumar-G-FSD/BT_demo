@@ -27,7 +27,7 @@ export default function Sidebar({
           onClick={() => setActiveTab('home')}
           className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-md ${
             activeTab === 'home'
-              ? 'bg-white text-[#1b1451] scale-105 font-bold'
+              ? 'bg-white text-primary scale-105 font-bold'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
           aria-label="Home"
@@ -41,7 +41,7 @@ export default function Sidebar({
           onClick={() => setActiveTab('search')}
           className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
             activeTab === 'search'
-              ? 'bg-white text-[#1b1451]'
+              ? 'bg-white text-primary'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
           aria-label="Search"
@@ -55,7 +55,7 @@ export default function Sidebar({
           onClick={() => setActiveTab('grid')}
           className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
             activeTab === 'grid'
-              ? 'bg-white text-[#1b1451]'
+              ? 'bg-white text-primary'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
           aria-label="Gallery"
@@ -69,7 +69,7 @@ export default function Sidebar({
           onClick={() => setActiveTab('chat')}
           className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer shadow-sm ${
             activeTab === 'chat'
-              ? 'bg-white text-[#1b1451]'
+              ? 'bg-white text-primary'
               : 'bg-white/10 hover:bg-white/20 text-white/80 hover:text-white border border-white/15 backdrop-blur-md'
           }`}
           aria-label="Aura Chat"
@@ -101,7 +101,7 @@ export default function Sidebar({
             onClick={() => setActiveTab('notifications')}
             className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer relative ${
               activeTab === 'notifications'
-                ? 'text-amber-500'
+                ? 'text-primary'
                 : 'text-neutral-400 hover:text-neutral-800 dark:hover:text-white'
             }`}
             aria-label="Notifications"
@@ -110,8 +110,8 @@ export default function Sidebar({
             <Bell className="w-4.5 h-4.5 stroke-[2]" />
             {notificationCount > 0 && (
               <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
               </span>
             )}
           </button>
@@ -130,7 +130,7 @@ export default function Sidebar({
             onClick={() => setActiveTab('settings')}
             className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 cursor-pointer ${
               activeTab === 'settings'
-                ? 'text-amber-500'
+                ? 'text-primary'
                 : 'text-neutral-400 hover:text-neutral-800 dark:hover:text-white'
             }`}
             aria-label="Settings"
@@ -146,7 +146,7 @@ export default function Sidebar({
               onClick={() => setIsDarkMode(true)}
               className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
                 isDarkMode 
-                  ? 'bg-neutral-850 text-amber-400 shadow-sm scale-110 border border-neutral-700/30' 
+                  ? 'bg-neutral-850 text-primary shadow-sm scale-110 border border-neutral-700/30' 
                   : 'text-neutral-400 hover:text-neutral-600'
               }`}
               aria-label="Dark Mode"
@@ -159,7 +159,7 @@ export default function Sidebar({
               onClick={() => setIsDarkMode(false)}
               className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer ${
                 !isDarkMode 
-                  ? 'bg-stone-100 text-amber-500 shadow-sm scale-110 border border-stone-200/50' 
+                  ? 'bg-stone-100 text-primary shadow-sm scale-110 border border-stone-200/50' 
                   : 'text-neutral-500 hover:text-white'
               }`}
               aria-label="Light Mode"

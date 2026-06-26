@@ -159,7 +159,7 @@ export default function AuraChat({
             {/* Header */}
             <div className={`p-5 flex items-center justify-between border-b ${isDarkMode ? 'border-neutral-800' : 'border-neutral-100'}`}>
               <div className="flex items-center gap-2.5">
-                <div className="relative flex justify-center items-center w-9 h-9 rounded-full bg-amber-500/10 text-amber-500">
+                <div className="relative flex justify-center items-center w-9 h-9 rounded-full bg-primary/10 text-primary">
                   <Sparkles className="w-4 h-4 animate-pulse" />
                 </div>
                 <div>
@@ -194,7 +194,7 @@ export default function AuraChat({
                     className={`flex ${isBot ? 'justify-start' : 'justify-end'} items-start gap-2.5`}
                   >
                     {isBot && (
-                      <div className="w-7 h-7 rounded-full bg-neutral-950 text-amber-400 flex items-center justify-center text-[10px] font-bold shadow-sm border border-neutral-800/20 shrink-0">
+                      <div className="w-7 h-7 rounded-full bg-neutral-950 text-primary flex items-center justify-center text-[10px] font-bold shadow-sm border border-neutral-800/20 shrink-0">
                         A
                       </div>
                     )}
@@ -205,7 +205,7 @@ export default function AuraChat({
                             ? 'bg-neutral-800/80 text-neutral-155 rounded-tl-none border border-neutral-800/40'
                             : 'bg-neutral-50 text-neutral-800 rounded-tl-none border border-neutral-150/50'
                           : isDarkMode
-                            ? 'bg-amber-400 text-neutral-900 rounded-tr-none font-semibold'
+                            ? 'bg-primary text-white rounded-tr-none font-semibold'
                             : 'bg-neutral-900 text-white rounded-tr-none'
                       }`}>
                         {msg.text}
@@ -221,7 +221,7 @@ export default function AuraChat({
               {/* Bot typing status */}
               {isTyping && (
                 <div className="flex justify-start items-center gap-2.5">
-                  <div className="w-7 h-7 rounded-full bg-neutral-950 text-amber-400 flex items-center justify-center text-[10px] font-bold shadow-sm shrink-0">
+                  <div className="w-7 h-7 rounded-full bg-neutral-950 text-primary flex items-center justify-center text-[10px] font-bold shadow-sm shrink-0">
                     A
                   </div>
                   <div className={`p-3 rounded-2xl flex items-center gap-1.5 ${isDarkMode ? 'bg-neutral-800/80' : 'bg-neutral-50'} border ${isDarkMode ? 'border-neutral-800/40' : 'border-neutral-100'}`}>
@@ -271,7 +271,7 @@ export default function AuraChat({
                   placeholder="Ask Aura to update filters..."
                   className={`flex-1 text-xs px-3.5 py-2.5 rounded-xl focus:outline-none transition-all duration-300 ${
                     isDarkMode 
-                      ? 'bg-neutral-950 border border-neutral-800 text-white focus:border-amber-400' 
+                      ? 'bg-neutral-950 border border-neutral-800 text-white focus:border-primary' 
                       : 'bg-neutral-50 border border-neutral-150 text-neutral-800 focus:border-neutral-900 focus:bg-white'
                   }`}
                 />
@@ -279,7 +279,7 @@ export default function AuraChat({
                   type="submit"
                   className={`p-2.5 rounded-xl transition-all duration-300 flex items-center justify-center cursor-pointer ${
                     inputValue.trim() 
-                      ? 'bg-amber-400 text-neutral-900 shadow-md hover:scale-105' 
+                      ? 'bg-primary text-white shadow-md hover:scale-105' 
                       : 'bg-neutral-100 dark:bg-neutral-800 text-neutral-400 cursor-not-allowed'
                   }`}
                   disabled={!inputValue.trim()}

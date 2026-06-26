@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, MapPin, Home, Calendar, ArrowUpLeft, ArrowUpRight } from 'lucide-react';
+import { ChevronDown, MapPin, Home, Calendar, ArrowUpRight, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FilterState } from '../types';
+import logoImg from '../assets/images/BrownTree_logo.png';
 
 interface FilterBarProps {
   filterState: FilterState;
@@ -154,9 +155,9 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
                   isDisabled
                     ? 'text-neutral-300 dark:text-neutral-700 cursor-not-allowed line-through'
                     : isCheckIn || isCheckOut
-                      ? 'bg-amber-400 text-neutral-950 font-bold shadow-sm scale-105'
+                      ? 'bg-primary text-white font-bold shadow-sm scale-105'
                       : isInRange
-                        ? 'bg-amber-400/20 text-amber-500 dark:text-amber-400 font-medium'
+                        ? 'bg-primary/20 text-primary dark:text-primary font-medium'
                         : 'hover:bg-neutral-500/10 text-neutral-700 dark:text-neutral-300'
                 }`}
               >
@@ -172,23 +173,24 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
   return (
     <div className="w-full flex items-center justify-between px-6 z-30 select-none h-20 relative">
       
-      {/* 1. BUY BUTTON (Floating left side) */}
+      {/* 1. LOGO IMAGE (Floating left side instead of Buy button) */}
       <div className="flex items-center">
         <button
           onClick={() => selectOption('offerType', 'Buy')}
-          className={`group flex items-center gap-3.5 px-8 py-3.5 rounded-full transition-all duration-300 shadow-md cursor-pointer ${
-            filterState.offerType === 'Buy'
-              ? isDarkMode
-                ? 'bg-neutral-800 text-amber-400 border border-neutral-700/50'
-                : 'bg-[#f4f5fa] text-neutral-800 border border-stone-200/50'
-              : isDarkMode
-                ? 'bg-neutral-900/60 text-neutral-400 border border-neutral-800 hover:text-white'
-                : 'bg-white/80 text-neutral-600 border border-white hover:text-neutral-900 hover:bg-white backdrop-blur-sm'
+          className={`group flex items-center justify-center p-2 rounded-2xl transition-all duration-300 hover:bg-neutral-500/5 cursor-pointer ${
+            filterState.offerType === 'Buy' 
+              ? 'ring-2 ring-primary/40 bg-primary/5' 
+              : ''
           }`}
-          id="toggle-buy-btn"
+          title="BT Premium Estates - Buy Mode"
+          id="logo-buy-toggle"
         >
-          <ArrowUpLeft className="w-3.5 h-3.5 stroke-[2] text-amber-500 transition-transform duration-300 group-hover:-translate-x-0.5 group-hover:-translate-y-0.5" />
-          <span className="text-xs uppercase tracking-wider font-semibold">Buy</span>
+          <img 
+            src={logoImg} 
+            alt="BT Logo" 
+            className="h-11 w-auto object-contain filter drop-shadow-sm transition-transform duration-300 group-hover:scale-105"
+            referrerPolicy="no-referrer"
+          />
         </button>
       </div>
 
@@ -214,21 +216,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
           <div className="relative flex-1 flex items-center justify-center">
             <button
               onClick={() => toggleDropdown('location')}
-              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 hover:bg-neutral-500/5 ${
-                activeDropdown === 'location' ? 'bg-neutral-500/5' : ''
+              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 ${
+                activeDropdown === 'location' 
+                  ? 'bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/25' 
+                  : 'hover:bg-neutral-500/5'
               }`}
               id="filter-location-btn"
             >
-              <MapPin className="w-4 h-4 text-neutral-400 stroke-[1.8] shrink-0" />
+              <MapPin className="w-4 h-4 stroke-[2] shrink-0 transition-colors duration-300 text-primary" />
               <div className="flex flex-col">
-                <span className="text-[9px] uppercase font-semibold tracking-wider text-neutral-400 dark:text-neutral-500 leading-none">
+                <span className={`text-[9px] uppercase font-bold tracking-wider leading-none transition-colors duration-300 ${activeDropdown === 'location' ? 'text-primary/75' : 'text-neutral-400 dark:text-neutral-500'}`}>
                   Location
                 </span>
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-100">
+                  <span className="text-xs font-extrabold text-primary dark:text-primary">
                     {filterState.location}
                   </span>
-                  <ChevronDown className={`w-3 h-3 text-neutral-400 stroke-[2] transition-transform duration-300 ${activeDropdown === 'location' ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 stroke-[2.5] transition-transform duration-300 text-primary ${activeDropdown === 'location' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
             </button>
@@ -244,19 +248,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
                     isDarkMode ? 'bg-neutral-950 border-neutral-800 text-white' : 'bg-white border-stone-100 text-neutral-800'
                   }`}
                 >
-                  {locations.map((loc) => (
-                    <button
-                      key={loc}
-                      onClick={() => selectOption('location', loc)}
-                      className={`flex items-center w-full text-left px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer ${
-                        filterState.location === loc
-                          ? 'bg-amber-400/15 text-amber-500 dark:text-amber-400'
-                          : 'hover:bg-neutral-500/10'
-                      }`}
-                    >
-                      {loc}
-                    </button>
-                  ))}
+                  {locations.map((loc) => {
+                    const isSelected = filterState.location === loc;
+                    return (
+                      <button
+                        key={loc}
+                        onClick={() => selectOption('location', loc)}
+                        className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? 'bg-primary text-white shadow-md'
+                            : 'hover:bg-neutral-500/10 text-neutral-700 dark:text-neutral-300'
+                        }`}
+                      >
+                        <span>{loc}</span>
+                        {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                      </button>
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -269,21 +277,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
           <div className="relative flex-1 flex items-center justify-center">
             <button
               onClick={() => toggleDropdown('propertyType')}
-              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 hover:bg-neutral-500/5 ${
-                activeDropdown === 'propertyType' ? 'bg-neutral-500/5' : ''
+              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 ${
+                activeDropdown === 'propertyType' 
+                  ? 'bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/25' 
+                  : 'hover:bg-neutral-500/5'
               }`}
               id="filter-type-btn"
             >
-              <Home className="w-4 h-4 text-neutral-400 stroke-[1.8] shrink-0" />
+              <Home className="w-4 h-4 stroke-[2] shrink-0 transition-colors duration-300 text-primary" />
               <div className="flex flex-col">
-                <span className="text-[9px] uppercase font-semibold tracking-wider text-neutral-400 dark:text-neutral-500 leading-none">
+                <span className={`text-[9px] uppercase font-bold tracking-wider leading-none transition-colors duration-300 ${activeDropdown === 'propertyType' ? 'text-primary/75' : 'text-neutral-400 dark:text-neutral-500'}`}>
                   Property Type
                 </span>
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-100">
+                  <span className="text-xs font-extrabold text-primary dark:text-primary">
                     {filterState.propertyType}
                   </span>
-                  <ChevronDown className={`w-3 h-3 text-neutral-400 stroke-[2] transition-transform duration-300 ${activeDropdown === 'propertyType' ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 stroke-[2.5] transition-transform duration-300 text-primary ${activeDropdown === 'propertyType' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
             </button>
@@ -299,19 +309,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
                     isDarkMode ? 'bg-neutral-950 border-neutral-800 text-white' : 'bg-white border-stone-100 text-neutral-800'
                   }`}
                 >
-                  {propertyTypes.map((type) => (
-                    <button
-                      key={type}
-                      onClick={() => selectOption('propertyType', type)}
-                      className={`flex items-center w-full text-left px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200 cursor-pointer ${
-                        filterState.propertyType === type
-                          ? 'bg-amber-400/15 text-amber-500 dark:text-amber-400'
-                          : 'hover:bg-neutral-500/10'
-                      }`}
-                    >
-                      {type}
-                    </button>
-                  ))}
+                  {propertyTypes.map((type) => {
+                    const isSelected = filterState.propertyType === type;
+                    return (
+                      <button
+                        key={type}
+                        onClick={() => selectOption('propertyType', type)}
+                        className={`flex items-center justify-between w-full text-left px-3 py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
+                          isSelected
+                            ? 'bg-primary text-white shadow-md'
+                            : 'hover:bg-neutral-500/10 text-neutral-700 dark:text-neutral-300'
+                        }`}
+                      >
+                        <span>{type}</span>
+                        {isSelected && <Check className="w-3.5 h-3.5 stroke-[3]" />}
+                      </button>
+                    );
+                  })}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -324,21 +338,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
           <div className="relative flex-1 flex items-center justify-center">
             <button
               onClick={() => toggleDropdown('checkIn')}
-              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 hover:bg-neutral-500/5 ${
-                activeDropdown === 'checkIn' ? 'bg-neutral-500/5' : ''
+              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 ${
+                activeDropdown === 'checkIn' 
+                  ? 'bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/25' 
+                  : 'hover:bg-neutral-500/5'
               }`}
               id="filter-checkin-btn"
             >
-              <Calendar className="w-4 h-4 text-neutral-400 stroke-[1.8] shrink-0" />
+              <Calendar className="w-4 h-4 stroke-[2] shrink-0 transition-colors duration-300 text-primary" />
               <div className="flex flex-col">
-                <span className="text-[9px] uppercase font-semibold tracking-wider text-neutral-400 dark:text-neutral-500 leading-none">
+                <span className={`text-[9px] uppercase font-bold tracking-wider leading-none transition-colors duration-300 ${activeDropdown === 'checkIn' ? 'text-primary/75' : 'text-neutral-400 dark:text-neutral-500'}`}>
                   Check-in
                 </span>
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-100 font-mono">
+                  <span className="text-xs font-extrabold text-primary dark:text-primary font-mono">
                     {filterState.checkIn || 'Jun 28'}
                   </span>
-                  <ChevronDown className={`w-3 h-3 text-neutral-400 stroke-[2] transition-transform duration-300 ${activeDropdown === 'checkIn' ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 stroke-[2.5] transition-transform duration-300 text-primary ${activeDropdown === 'checkIn' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
             </button>
@@ -367,21 +383,23 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
           <div className="relative flex-1 flex items-center justify-center">
             <button
               onClick={() => toggleDropdown('checkOut')}
-              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 hover:bg-neutral-500/5 ${
-                activeDropdown === 'checkOut' ? 'bg-neutral-500/5' : ''
+              className={`flex items-center gap-2.5 px-3 py-1.5 rounded-xl text-left cursor-pointer transition-all duration-300 ${
+                activeDropdown === 'checkOut' 
+                  ? 'bg-primary/10 dark:bg-primary/15 ring-1 ring-primary/25' 
+                  : 'hover:bg-neutral-500/5'
               }`}
               id="filter-checkout-btn"
             >
-              <Calendar className="w-4 h-4 text-neutral-400 stroke-[1.8] shrink-0" />
+              <Calendar className="w-4 h-4 stroke-[2] shrink-0 transition-colors duration-300 text-primary" />
               <div className="flex flex-col">
-                <span className="text-[9px] uppercase font-semibold tracking-wider text-neutral-400 dark:text-neutral-500 leading-none">
+                <span className={`text-[9px] uppercase font-bold tracking-wider leading-none transition-colors duration-300 ${activeDropdown === 'checkOut' ? 'text-primary/75' : 'text-neutral-400 dark:text-neutral-500'}`}>
                   Check-out
                 </span>
                 <div className="flex items-center gap-1 mt-1">
-                  <span className="text-xs font-semibold text-neutral-800 dark:text-neutral-100 font-mono">
+                  <span className="text-xs font-extrabold text-primary dark:text-primary font-mono">
                     {filterState.checkOut || 'Jul 05'}
                   </span>
-                  <ChevronDown className={`w-3 h-3 text-neutral-400 stroke-[2] transition-transform duration-300 ${activeDropdown === 'checkOut' ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-3 h-3 stroke-[2.5] transition-transform duration-300 text-primary ${activeDropdown === 'checkOut' ? 'rotate-180' : ''}`} />
                 </div>
               </div>
             </button>
@@ -414,16 +432,16 @@ export default function FilterBar({ filterState, setFilterState, isDarkMode }: F
           className={`group flex items-center gap-3.5 px-8 py-3.5 rounded-full transition-all duration-300 shadow-md cursor-pointer ${
             filterState.offerType === 'Rent'
               ? isDarkMode
-                ? 'bg-neutral-800 text-amber-400 border border-neutral-700/50'
-                : 'bg-[#f4f5fa] text-[#1b1451] border border-stone-200/50'
+                ? 'bg-neutral-800 text-primary border border-neutral-700/50 font-bold'
+                : 'bg-white text-primary border border-stone-200/50 font-extrabold'
               : isDarkMode
                 ? 'bg-neutral-900/60 text-neutral-400 border border-neutral-800 hover:text-white'
-                : 'bg-white/80 text-neutral-600 border border-white hover:text-[#1b1451] hover:bg-white backdrop-blur-sm'
+                : 'bg-white/80 text-neutral-600 border border-white hover:text-primary hover:bg-white backdrop-blur-sm'
           }`}
           id="toggle-rent-btn"
         >
-          <span className="text-xs uppercase tracking-wider font-semibold">Rent</span>
-          <ArrowUpRight className="w-3.5 h-3.5 stroke-[2] text-amber-500 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <span className="text-xs uppercase tracking-wider font-bold">Rent</span>
+          <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5] text-primary transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </button>
       </div>
 
