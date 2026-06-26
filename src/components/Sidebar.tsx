@@ -18,10 +18,10 @@ export default function Sidebar({
   notificationCount
 }: SidebarProps) {
   return (
-    <div className="w-full h-full md:absolute md:left-0 md:top-0 md:bottom-0 md:w-16 z-20 flex flex-row md:flex-col justify-between items-center px-4 md:px-0 py-2 md:py-6 select-none bg-neutral-900/60 md:bg-transparent border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none rounded-3xl md:rounded-none shadow-xl md:shadow-none">
+    <div className="w-full h-full md:absolute md:left-0 md:top-0 md:bottom-0 md:w-16 z-20 flex flex-row md:flex-col justify-between items-center px-4 md:px-0 py-2 md:py-6 select-none bg-neutral-900/60 md:bg-transparent border border-white/5 md:border-none backdrop-blur-md md:backdrop-blur-none rounded-3xl md:rounded-none shadow-xl md:shadow-none overflow-x-auto md:overflow-x-visible md:overflow-y-visible flex-nowrap gap-4 md:gap-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
       
       {/* TOP SECTION: FLOAT FLOATING BUTTONS (HOME, SEARCH, GRID, CHAT) */}
-      <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3.5">
+      <div className="flex flex-row md:flex-col items-center gap-2 md:gap-3.5 shrink-0">
         {/* Home Button */}
         <button
           onClick={() => setActiveTab('home')}
@@ -83,7 +83,7 @@ export default function Sidebar({
       </div>
 
       {/* MIDDLE SECTION: SOLID AVATAR & BELL */}
-      <div className="flex flex-row md:flex-col items-center">
+      <div className="flex flex-row md:flex-col items-center shrink-0">
         <div className={`flex flex-row md:flex-col items-center gap-2.5 md:gap-4 p-1 md:p-0 md:w-14 md:py-4 rounded-full md:rounded-l-none md:rounded-r-[2rem] shadow-md md:shadow-lg border border-white/10 md:border-y md:border-r transition-colors duration-500 ${
           isDarkMode 
             ? 'bg-neutral-950/65 md:bg-neutral-900 border-neutral-800/80 text-white' 
@@ -122,7 +122,7 @@ export default function Sidebar({
       </div>
 
       {/* BOTTOM SECTION: SOCIAL LINKS (FACEBOOK, INSTAGRAM, YOUTUBE) */}
-      <div className="flex flex-row md:flex-col items-center">
+      <div className="flex flex-row md:flex-col items-center shrink-0">
         <div className={`flex flex-row md:flex-col items-center gap-3 md:gap-4 p-2 md:p-0 md:w-14 md:py-4.5 rounded-full md:rounded-l-none md:rounded-r-[2rem] shadow-md md:shadow-lg border border-white/10 md:border-y md:border-r transition-colors duration-500 ${
           isDarkMode 
             ? 'bg-neutral-950/65 md:bg-neutral-900 border-neutral-800/80 text-white' 
